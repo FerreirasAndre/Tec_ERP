@@ -1,6 +1,12 @@
 package com.Erp.demo.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+
 public class Produto {
+	@Id
 	private int idProduto;
 	private String descricao;
 	private double preco;

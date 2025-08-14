@@ -1,6 +1,13 @@
 package com.Erp.demo.model;
 
+import org.springframework.data.annotation.Id;
+
+import jakarta.persistence.Entity;
+
+@Entity
+
 public class Endereco {
+	@Id
 	private int idEndereco;
 	private String rua;
 	private int numero;
@@ -55,6 +62,15 @@ public Endereco(int idEndereco, String rua, int numero, String bairro, String ci
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 
 }
