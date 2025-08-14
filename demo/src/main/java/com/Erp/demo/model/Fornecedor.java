@@ -1,42 +1,65 @@
 package com.Erp.demo.model;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+@Entity
 public class Fornecedor {
 
     @Id
     private Integer idFornecedor;
-    private String nome;
-    private String cpf;
+    private String razaoSocial;
+    private String cnpj;
+    private String endereco;
+    private String contato;
 
-    public String getCpf() {
-        return cpf;
+    public Fornecedor() {}
+
+    public Fornecedor(Integer idFornecedor, String razaoSocial, String cnpj, String endereco, String contato) {
+        this.idFornecedor = idFornecedor;
+        this.razaoSocial = razaoSocial;
+        this.cnpj = cnpj;
+        this.endereco = endereco;
+        this.contato = contato;
     }
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+
     public Integer getIdFornecedor() {
         return idFornecedor;
     }
+
     public void setIdFornecedor(Integer idFornecedor) {
         this.idFornecedor = idFornecedor;
     }
-    public String getNome() {
-        return nome;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
+
+    public String getRazaoSocial() {
+        return razaoSocial;
     }
 
-    public Fornecedor (Integer idFornecedor, String nome, String cpf){
-        this.idFornecedor = idFornecedor;
-        this.nome = nome;
-        this.cpf = cpf;
-
+    public void setRazaoSocial(String razaoSocial) {
+        this.razaoSocial = razaoSocial;
     }
-    
-    public Fornecedor(){
 
+    public String getCnpj() {
+        return cnpj;
     }
-    
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getContato() {
+        return contato;
+    }
+
+    public void setContato(String contato) {
+        this.contato = contato;
+    }
 }
