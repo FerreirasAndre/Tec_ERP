@@ -1,6 +1,11 @@
 package com.Erp.demo.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class PerfilAcesso {
+    @Id
     private int idPerfil;
     private String nome;
     private String descricao;
