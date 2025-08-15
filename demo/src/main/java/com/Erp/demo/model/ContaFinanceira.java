@@ -2,29 +2,24 @@ package com.Erp.demo.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import java.time.LocalDate;
 
 @Entity
-public class Conta {
+public class ContaFinanceira {
 
     @Id
     private Integer idConta;
     private String descricao;
     private double valor;
     private String tipo;
-    private LocalDate data_vencimento;
-    private String status;
 
-    public Conta(Integer idConta, String descricao, double valor, String tipo, LocalDate data_vencimento, String status) {
+    public ContaFinanceira(Integer idConta, String descricao, double valor, String tipo) {
         this.idConta = idConta;
         this.descricao = descricao;
         this.valor = valor;
         this.tipo = tipo;
-        this.data_vencimento = data_vencimento;
-        this.status = status;
     }
 
-    public Conta() {
+    public ContaFinanceira() {
     }
 
     public Integer getIdConta() {
