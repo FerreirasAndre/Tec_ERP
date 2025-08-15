@@ -1,6 +1,11 @@
 package com.Erp.demo.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class UsuarioSistema {
+    @Id
     private int idUsuario;
     private String nomeUsuario;
     private String senha;

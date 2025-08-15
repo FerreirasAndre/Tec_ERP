@@ -1,6 +1,11 @@
 package com.Erp.demo.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Funcionario {
+    @Id
     private int idFuncionario;
     private String nome;
     private int cpf;
