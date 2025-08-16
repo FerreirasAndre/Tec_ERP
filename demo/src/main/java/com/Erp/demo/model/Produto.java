@@ -1,13 +1,17 @@
 package com.Erp.demo.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Produto {
 
-    @Id
-    private int idProduto;
+	@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private long idProduto;
     private String codigoProduto;
     private String descricao;
     private String categoria;
@@ -18,7 +22,7 @@ public class Produto {
     public Produto() {
     }
 
-    public Produto(int idProduto, String codigoProduto, String descricao, String categoria, double precoVenda, double custo, int quantidadeEstoque) {
+    public Produto(long idProduto, String codigoProduto, String descricao, String categoria, double precoVenda, double custo, int quantidadeEstoque) {
         this.idProduto = idProduto;
         this.codigoProduto = codigoProduto;
         this.descricao = descricao;
@@ -28,11 +32,11 @@ public class Produto {
         this.quantidadeEstoque = quantidadeEstoque;
     }
 
-    public int getIdProduto() {
+    public long getIdProduto() {
         return idProduto;
     }
 
-    public void setIdProduto(int idProduto) {
+    public void setIdProduto(long idProduto) {
         this.idProduto = idProduto;
     }
 

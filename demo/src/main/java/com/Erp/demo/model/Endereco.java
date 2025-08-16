@@ -3,12 +3,15 @@ package com.Erp.demo.model;
 import org.springframework.data.annotation.Id;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 @Entity
-
 public class Endereco {
+
 	@Id
-	private int idEndereco;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long idEndereco;
 	private String rua;
 	private int numero;
 	private String bairro;
@@ -16,7 +19,7 @@ public class Endereco {
 	private String estado;
 	private String cep;
 	
-public Endereco(int idEndereco, String rua, int numero, String bairro, String cidade, String estado, String cep) {
+public Endereco(long idEndereco, String rua, int numero, String bairro, String cidade, String estado, String cep) {
 	this.idEndereco = idEndereco;
 	this.rua = rua;
 	this.numero = numero;
@@ -27,10 +30,10 @@ public Endereco(int idEndereco, String rua, int numero, String bairro, String ci
 }
 	
 	
-	public int getIdEndereco() {
+	public long getIdEndereco() {
 		return idEndereco;
 	}
-	public void setIdEndereco(int idEndereco) {
+	public void setIdEndereco(long idEndereco) {
 		this.idEndereco = idEndereco;
 	}
 	public String getRua() {

@@ -2,14 +2,18 @@ package com.Erp.demo.model;
 
 import java.time.LocalDate;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class TransacaoFinanceira {
 
-    @Id
-    private Integer idTransacao;
-    private Integer idConta;
+	@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private long idTransacao;
+    private long idConta;
     private LocalDate data;
     private double valor;
     private String formaPagamento;
@@ -17,7 +21,7 @@ public class TransacaoFinanceira {
     public TransacaoFinanceira() {
     }
 
-    public TransacaoFinanceira(Integer idTransacao, Integer idConta, LocalDate data, double valor, String formaPagamento) {
+    public TransacaoFinanceira(long idTransacao, long idConta, LocalDate data, double valor, String formaPagamento) {
         this.idTransacao = idTransacao;
         this.idConta = idConta;
         this.data = data;
@@ -25,19 +29,19 @@ public class TransacaoFinanceira {
         this.formaPagamento = formaPagamento;
     }
 
-    public Integer getIdTransacao() {
+    public long getIdTransacao() {
         return idTransacao;
     }
 
-    public void setIdTransacao(Integer idTransacao) {
+    public void setIdTransacao(long idTransacao) {
         this.idTransacao = idTransacao;
     }
 
-    public Integer getIdConta() {
+    public long getIdConta() {
         return idConta;
     }
 
-    public void setIdConta(Integer idConta) {
+    public void setIdConta(long idConta) {
         this.idConta = idConta;
     }
 

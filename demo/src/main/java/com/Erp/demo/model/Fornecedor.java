@@ -1,13 +1,16 @@
 package com.Erp.demo.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Fornecedor {
 
-    @Id
-    private Integer idFornecedor;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long idFornecedor;
     private String razaoSocial;
     private String cnpj;
     private String endereco;
@@ -15,7 +18,7 @@ public class Fornecedor {
 
     public Fornecedor() {}
 
-    public Fornecedor(Integer idFornecedor, String razaoSocial, String cnpj, String endereco, String contato) {
+    public Fornecedor(long idFornecedor, String razaoSocial, String cnpj, String endereco, String contato) {
         this.idFornecedor = idFornecedor;
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;
@@ -23,11 +26,11 @@ public class Fornecedor {
         this.contato = contato;
     }
 
-    public Integer getIdFornecedor() {
+    public long getIdFornecedor() {
         return idFornecedor;
     }
 
-    public void setIdFornecedor(Integer idFornecedor) {
+    public void setIdFornecedor(long idFornecedor) {
         this.idFornecedor = idFornecedor;
     }
 

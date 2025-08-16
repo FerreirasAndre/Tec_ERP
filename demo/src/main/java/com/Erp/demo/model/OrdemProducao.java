@@ -3,17 +3,20 @@ package com.Erp.demo.model;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class OrdemProducao {
 	@Id
-	private Integer idOrdem;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long idOrdem;
 	private LocalDate dataInicio;
 	private LocalDate dataFim;
 	private int quantidadeProduzir;
 	
-public OrdemProducao(Integer idOrdem, LocalDate dataInicio, LocalDate dataFim, int quantidadeProduzir) {
+public OrdemProducao(long idOrdem, LocalDate dataInicio, LocalDate dataFim, int quantidadeProduzir) {
 	this.idOrdem = idOrdem;
 	this.dataInicio = dataInicio;
 	this.dataFim = dataFim;
@@ -21,11 +24,11 @@ public OrdemProducao(Integer idOrdem, LocalDate dataInicio, LocalDate dataFim, i
 	
 }
 
-public Integer getidOrdem() {
+public long getIdOrdem() {
 	return idOrdem;
 }
 
-public void setidOrdem(Integer idOrdem) {
+public void setidOrdem(long idOrdem) {
 	this.idOrdem = idOrdem;
 }
 

@@ -1,26 +1,30 @@
 package com.Erp.demo.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class PerfilAcesso {
-    @Id
-    private int idPerfil;
+	@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private long idPerfil;
     private String nome;
     private String descricao;
 
-public PerfilAcesso(int idPerfil, String nome, String descricao){
+public PerfilAcesso(long idPerfil, String nome, String descricao){
 this.idPerfil = idPerfil;
 this.nome = nome;
 this.descricao = descricao;
 }
 
-public int getIdPerfil() {
+public long getIdPerfil() {
     return idPerfil;
 }
 
-public void setIdPerfil(int idPerfil) {
+public void setIdPerfil(long idPerfil) {
     this.idPerfil = idPerfil;
 }
 

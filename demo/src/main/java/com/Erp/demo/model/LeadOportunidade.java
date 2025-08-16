@@ -1,18 +1,21 @@
 package com.Erp.demo.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class LeadOportunidade {
-    @Id
-    private int idLead;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long idLead;
     private String nome;
     private String email;
     private String origem;
     private String status;
 
-public LeadOportunidade(){
+public LeadOportunidade(long idLead, String nome, String email, String origem, String status){
 this.idLead = idLead;
 this.nome = nome;
 this.email = email;
@@ -20,11 +23,11 @@ this.origem = origem;
 this.status = status;    
 }
 
-public int getIdLead() {
+public long getIdLead() {
     return idLead;
 }
 
-public void setIdLead(int idLead) {
+public void setIdLead(long idLead) {
     this.idLead = idLead;
 }
 

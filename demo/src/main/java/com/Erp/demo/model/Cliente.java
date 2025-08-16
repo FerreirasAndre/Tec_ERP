@@ -4,13 +4,16 @@ import java.time.LocalDate;
 import java.util.List;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Cliente {
 
-    @Id
-    private Integer idCliente;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long idCliente;
     private String nomeCompleto;
     private String cpfCnpj;
     private String email;
@@ -23,7 +26,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(Integer idCliente, String nomeCompleto, String cpfCnpj, String email, String endereco, LocalDate dataCadastro, List<String> telefones) {
+    public Cliente(long idCliente, String nomeCompleto, String cpfCnpj, String email, String endereco, LocalDate dataCadastro, List<String> telefones) {
         this.idCliente = idCliente;
         this.nomeCompleto = nomeCompleto;
         this.cpfCnpj = cpfCnpj;
@@ -33,11 +36,11 @@ public class Cliente {
         this.telefones = telefones;
     }
 
-    public Integer getIdCliente() {
+    public long getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Integer idCliente) {
+    public void setIdCliente(long idCliente) {
         this.idCliente = idCliente;
     }
 

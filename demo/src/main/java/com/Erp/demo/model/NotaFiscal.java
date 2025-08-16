@@ -2,23 +2,26 @@ package com.Erp.demo.model;
 
 import java.time.LocalDate;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class NotaFiscal {
 
-    @Id
-    private Integer idNota;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long idNota;
     private String numeroNota;
     private double valorTotal;
     private LocalDate dataEmissao;
     private String formaPagamento;
-    private int idVenda;
+    private long idVenda;
 
     public NotaFiscal() {
     }
 
-    public NotaFiscal(Integer idNota, String numeroNota, double valorTotal, LocalDate dataEmissao, String formaPagamento, int idVenda) {
+    public NotaFiscal(long idNota, String numeroNota, double valorTotal, LocalDate dataEmissao, String formaPagamento, long idVenda) {
         this.idNota = idNota;
         this.numeroNota = numeroNota;
         this.valorTotal = valorTotal;
@@ -27,11 +30,11 @@ public class NotaFiscal {
         this.idVenda = idVenda;
     }
 
-    public Integer getIdNota() {
+    public long getIdNota() {
         return idNota;
     }
 
-    public void setIdNota(Integer idNota) {
+    public void setIdNota(long idNota) {
         this.idNota = idNota;
     }
 
@@ -67,11 +70,11 @@ public class NotaFiscal {
         this.formaPagamento = formaPagamento;
     }
 
-    public int getIdVenda() {
+    public long getIdVenda() {
         return idVenda;
     }
 
-    public void setIdVenda(int idVenda) {
+    public void setIdVenda(long idVenda) {
         this.idVenda = idVenda;
     }
 }

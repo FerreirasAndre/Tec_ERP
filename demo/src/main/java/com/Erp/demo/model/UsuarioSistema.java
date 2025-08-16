@@ -1,28 +1,32 @@
 package com.Erp.demo.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class UsuarioSistema {
-    @Id
-    private int idUsuario;
+	@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private long idUsuario;
     private String nomeUsuario;
     private String senha;
     private String email;
 
-public UsuarioSistema(int idUsuario, String nomeUsuario, String email, String senha){
+public UsuarioSistema(long idUsuario, String nomeUsuario, String email, String senha){
 this.idUsuario = idUsuario;
 this.nomeUsuario = nomeUsuario;
 this.senha = senha;
 this.email = email;
 }
 
-public int getIdUsuario() {
+public long getIdUsuario() {
     return idUsuario;
 }
 
-public void setIdUsuario(int idUsuario) {
+public void setIdUsuario(long idUsuario) {
     this.idUsuario = idUsuario;
 }
 

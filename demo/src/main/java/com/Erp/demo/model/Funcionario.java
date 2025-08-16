@@ -1,18 +1,21 @@
 package com.Erp.demo.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Funcionario {
-    @Id
-    private int idFuncionario;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long idFuncionario;
     private String nome;
     private int cpf;
     private String cargo;
     private Double salario;
 
-public Funcionario (int idFuncionario, String nome, int cpf, String cargo, Double salario){
+public Funcionario (long idFuncionario, String nome, int cpf, String cargo, Double salario){
     this.idFuncionario = idFuncionario;
     this.nome = nome;
     this.cpf = cpf;
@@ -20,11 +23,11 @@ public Funcionario (int idFuncionario, String nome, int cpf, String cargo, Doubl
     this.salario = salario;   
 }
 
-public int getIdFuncionario() {
+public long getIdFuncionario() {
     return idFuncionario;
 }
 
-public void setIdFuncionario(int idFuncionario) {
+public void setIdFuncionario(long idFuncionario) {
     this.idFuncionario = idFuncionario;
 }
 
