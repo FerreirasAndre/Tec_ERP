@@ -1,63 +1,30 @@
 package com.Erp.demo.model;
 
-import java.time.LocalDate;
-import java.util.List;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
 public class Cliente {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idCliente;
-    private String nomeCompleto;
+    @Id
+    private Integer idCliente;
+    private String nome;
     private String cpfCnpj;
     private String email;
-    private String endereco;
-    private LocalDate dataCadastro;
 
-    @ElementCollection
-    private List<String> telefones;
 
-    public Cliente() {
-    }
 
-    public Cliente(long idCliente, String nomeCompleto, String cpfCnpj, String email, String endereco, LocalDate dataCadastro, List<String> telefones) {
-        this.idCliente = idCliente;
-        this.nomeCompleto = nomeCompleto;
-        this.cpfCnpj = cpfCnpj;
-        this.email = email;
-        this.endereco = endereco;
-        this.dataCadastro = dataCadastro;
-        this.telefones = telefones;
-    }
-
-    public long getIdCliente() {
+    public Integer getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(long idCliente) {
+    public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
 
-    public String getNomeCompleto() {
-        return nomeCompleto;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
-    }
-
-    public String getCpfCnpj() {
-        return cpfCnpj;
-    }
-
-    public void setCpfCnpj(String cpfCnpj) {
-        this.cpfCnpj = cpfCnpj;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEmail() {
@@ -68,27 +35,15 @@ public class Cliente {
         this.email = email;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getCpfCnpj() {
+        return cpfCnpj;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setCpfCnpj(String cpfCnpj) {
+        this.cpfCnpj = cpfCnpj;
     }
 
-    public LocalDate getDataCadastro() {
-        return dataCadastro;
-    }
-
-    public void setDataCadastro(LocalDate dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
-
-    public List<String> getTelefones() {
-        return telefones;
-    }
-
-    public void setTelefones(List<String> telefones) {
-        this.telefones = telefones;
-    }
+    /* public String getPedidos (){
+    return;
+    }*/
 }
