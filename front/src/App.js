@@ -17,11 +17,12 @@ function App() {
         <SidebarMenu />
         <main className="main-content">
           <Routes>
-            <Route path="/financeiro/*" element={<Financeiro />} />
-            <Route path="/vendas/*" element={<Vendas />} />
-            <Route path="/estoque/*" element={<Estoque />} />
-            <Route path="/bi/*" element={<BI />} />
-            <Route path="/clientes" element={<Clientes />} />
+            <Route path="/Financeiro/*" element={<Financeiro />} />
+            <Route path="/Vendas/*" element={<Vendas />} />
+            <Route path="/Estoque/*" element={<Estoque />} />
+            <Route path="/Bi/*" element={<BI />} />
+            <Route path="/Clientes" element={<Clientes />} />
+            <Route path="/Financeiro.filhos/*" element={<Financeiro />} />
           </Routes>
         </main>
       </div>

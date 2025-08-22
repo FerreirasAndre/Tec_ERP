@@ -1,21 +1,30 @@
-import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { useState } from "react";
+import Fluxo from "./Financeiro.filhos/Fluxo";
+import Relatorios from "./Financeiro.filhos/Relatorios";
 
-function Financeiro() {
+export default function Financeiro() {
+  const [tela, setTela] = useState(null); // null = menu principal
+  const [fluxos, setFluxos] = useState([]); // Estado do fluxo de caixa
+
   return (
     <div>
-      <h1>Financeiro e Contábil</h1>
-      <nav className="sub-menu">
-        <Link to="fluxo">Fluxo de Caixa</Link>
-        <Link to="relatorios">Demonstrações Contábeis</Link>
-      </nav>
+      <h1>📊 Financeiro e Contábil</h1>
 
-      <Routes>
-        <Route path="fluxo" element={<p>📌 Tela de Fluxo de Caixa</p>} />
-        <Route path="relatorios" element={<p>📌 Relatórios Contábeis</p>} />
-      </Routes>
+      {tela === null && (
+        <nav className="sub-menu">
+          <button onClick={() => setTela("fluxo")}>Fluxo de Caixa</button>
+          <button onClick={() => setTela("relatorios")}>Relatórios Contábeis</button>
+        </nav>
+      )}
+
+      {tela !== null && (
+        <div>
+          <button onClick={() => setTela(null)}>⬅ Voltar</button>
+
+          {tela === "fluxo" && <Fluxo fluxos={fluxos} setFluxos={setFluxos} />}
+          {tela === "relatorios" && <Relatorios fluxos={fluxos} />}
+        </div>
+      )}
     </div>
   );
 }
-
-export default Financeiro;

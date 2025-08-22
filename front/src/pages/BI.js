@@ -1,19 +1,33 @@
-import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { useState } from "react";
+import Gerenciais from "./BI.filhos/Gerenciais";
+import Dashboards from "./BI.filhos/Dashboards";
 
 function BI() {
+  const [tela, setTela] = useState(null); // null = mostra menu
+
   return (
     <div>
       <h1>BI e Relatórios</h1>
-      <nav className="sub-menu">
-        <Link to="gerenciais">Relatórios Gerenciais e Operacionais</Link>
-        <Link to="dashboards">Dashboards em tempo real</Link>
-      </nav>
 
-      <Routes>
-        <Route path="gerenciais" element={<p>📌 Tela de Relatórios Gerenciais e Operacionais</p>} />
-        <Route path="dashboards" element={<p>📌 Tela de Dashboards em tempo real</p>} />
-      </Routes>
+      {tela === null && (
+        <nav className="sub-menu">
+          <button onClick={() => setTela("gerenciais")}>
+            Relatórios Gerenciais e Operacionais
+          </button>
+          <button onClick={() => setTela("dashboards")}>
+            Dashboards em tempo real
+          </button>
+        </nav>
+      )}
+
+      {tela !== null && (
+        <div>
+          <button onClick={() => setTela(null)}>⬅ Voltar</button>
+
+          {tela === "gerenciais" && <Gerenciais />}
+          {tela === "dashboards" && <Dashboards />}
+        </div>
+      )}
     </div>
   );
 }
