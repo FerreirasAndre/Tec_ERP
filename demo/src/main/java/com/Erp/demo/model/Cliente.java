@@ -1,9 +1,15 @@
 package com.Erp.demo.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.springframework.boot.autoconfigure.web.WebProperties;
 
+@Entity
 public class Cliente {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCliente;
     private String nome;
     private String cpfCnpj;

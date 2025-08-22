@@ -1,8 +1,15 @@
 package com.Erp.demo.model;
 
-import java.time.LocalDate;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+import java.time.LocalDate;
+@Entity
 public class Pedido {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPedido ;
     private LocalDate dataPedido ;
     private String status;
