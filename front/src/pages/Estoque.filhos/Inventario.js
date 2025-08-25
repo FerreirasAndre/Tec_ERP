@@ -1,8 +1,17 @@
-import React, { useState} from "react";
-
+// Inventario.js
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Inventario() {
-  const [produtos] = useState([]);
+  const [produtos, setProdutos] = useState([]);
+  const baseURL = "http://localhost:8080/produtos"; // ajuste conforme seu backend
+
+  useEffect(() => {
+    axios.get(baseURL)
+      .then(res => setProdutos(res.data))
+      .catch(err => console.error("Erro ao buscar produtos:", err));
+  }, []);
+
   return (
     <div>
       <h2>📌 Inventário de Produtos</h2>
@@ -19,11 +28,7 @@ export default function Inventario() {
         </thead>
         <tbody>
           {produtos.length === 0 ? (
-            <tr>
-              <td colSpan="6" style={{ textAlign: "center" }}>
-                Nenhum produto cadastrado.
-              </td>
-            </tr>
+            <tr><td colSpan="6" style={{ textAlign: "center" }}>Nenhum produto cadastrado.</td></tr>
           ) : (
             produtos.map((produto, index) => (
               <tr key={index}>

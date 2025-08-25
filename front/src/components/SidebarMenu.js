@@ -11,7 +11,7 @@ function SidebarMenu() {
       </button>
 
       <nav>
-      <Link to="/App.js">
+      <Link to="/">
           <span className="icon">🏠</span>
           <span className="link-text">Home</span>
         </Link>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 export default function Notas() {
   const [notas, setNotas] = useState([]);
@@ -7,7 +8,7 @@ export default function Notas() {
   const [valorTotal, setValorTotal] = useState("");
   const [idVenda, setIdVenda] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validações básicas
@@ -35,13 +36,20 @@ export default function Notas() {
       id_venda: idVenda,
     };
 
-    setNotas([...notas, novaNota]);
+    try {
+      await axios.post("http://localhost:8080/notas", novaNota);
+      alert("Nota emitida com sucesso!");
+      setNotas([...notas, novaNota]);
 
-    // Limpa campos do formulário
-    setNumeroNota("");
-    setDataEmissao("");
-    setValorTotal("");
-    setIdVenda("");
+      // Limpa campos
+      setNumeroNota("");
+      setDataEmissao("");
+      setValorTotal("");
+      setIdVenda("");
+    } catch (err) {
+      console.error("Erro ao emitir nota:", err);
+      alert("Falha ao emitir nota. Veja o console para detalhes.");
+    }
   };
 
   return (

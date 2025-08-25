@@ -1,13 +1,14 @@
 import React, { useState } from "react";
+import axios from "axios";
 
-function FormCliente({ enviarParaBack }) {
+export default function FormCliente() {
   const [nome, setNome] = useState("");
   const [cpfCnpj, setCpfCnpj] = useState("");
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
   const [enderecoId, setEnderecoId] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validações simples
@@ -36,17 +37,27 @@ function FormCliente({ enviarParaBack }) {
       return;
     }
 
-    // Monta o objeto para enviar
     const dados = {
       nome,
       cpf_cnpj: cpfCnpj,
       email,
       telefone,
-      endereco_id: enderecoId,
+      endereco_id: parseInt(enderecoId, 10),
     };
 
-    // Chama a função do backend (fetch/axios)
-    enviarParaBack(dados);
+    try {
+      await axios.post("http://localhost:8080/clientes", dados);
+      alert("Cliente cadastrado com sucesso!");
+      // Limpa os campos
+      setNome("");
+      setCpfCnpj("");
+      setEmail("");
+      setTelefone("");
+      setEnderecoId("");
+    } catch (err) {
+      console.error("Erro ao cadastrar cliente:", err);
+      alert("Falha ao cadastrar cliente. Veja o console para detalhes.");
+    }
   };
 
   return (
@@ -70,7 +81,7 @@ function FormCliente({ enviarParaBack }) {
             type="text"
             value={cpfCnpj}
             maxLength={14}
-            onChange={(e) => setCpfCnpj(e.target.value.replace(/\D/g, ""))} // só números
+            onChange={(e) => setCpfCnpj(e.target.value.replace(/\D/g, ""))}
           />
         </div>
 
@@ -108,5 +119,3 @@ function FormCliente({ enviarParaBack }) {
     </div>
   );
 }
-
-export default FormCliente;

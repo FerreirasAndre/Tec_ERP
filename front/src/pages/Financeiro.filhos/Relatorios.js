@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-export default function Relatorios({ fluxos }) {
+export default function Relatorios() {
+  const [fluxos, setFluxos] = useState([]);
+  const baseURL = "http://localhost:8080/fluxo"; // ajuste conforme sua API
+
+  useEffect(() => {
+    axios.get(baseURL)
+      .then(res => setFluxos(res.data))
+      .catch(err => console.error("Erro ao buscar fluxos:", err));
+  }, []);
 
   const total = fluxos.reduce((acc, f) => acc + f.valor, 0);
 
