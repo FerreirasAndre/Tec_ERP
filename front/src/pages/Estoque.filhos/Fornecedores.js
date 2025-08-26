@@ -8,14 +8,23 @@ export default function Fornecedores() {
   const [cnpj, setCnpj] = useState("");
   const [endereco, setEndereco] = useState("");
   const [contato, setContato] = useState("");
+  const [fornecedorEditando, setFornecedorEditando] = useState(null); // Estado para gerenciar a edição
 
-  const baseURL = "http://localhost:8080/fornecedores"; // ajuste conforme seu backend
+  const baseURL = "http://localhost:8080/fornecedores";
+
+  // Função para buscar os fornecedores da API
+  const fetchFornecedores = async () => {
+    try {
+      const res = await axios.get(baseURL);
+      setFornecedores(res.data);
+    } catch (err) {
+      console.error("Erro ao buscar fornecedores:", err);
+    }
+  };
 
   // Busca fornecedores ao carregar a página
   useEffect(() => {
-    axios.get(baseURL)
-      .then(res => setFornecedores(res.data))
-      .catch(err => console.error("Erro ao buscar fornecedores:", err));
+    fetchFornecedores();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -26,21 +35,61 @@ export default function Fornecedores() {
     if (!endereco) return alert("Informe o endereço.");
     if (!contato) return alert("Informe o contato.");
 
-    const novoFornecedor = { razao_social: razaoSocial, cnpj, endereco, contato };
+    const dados = { razao_social: razaoSocial, cnpj, endereco, contato };
 
     try {
-      const res = await axios.post(baseURL, novoFornecedor);
-      setFornecedores([...fornecedores, res.data]); // adiciona fornecedor retornado pelo backend
-      setRazaoSocial(""); setCnpj(""); setEndereco(""); setContato("");
+      if (fornecedorEditando) {
+        // Lógica para EDIÇÃO (PUT)
+        await axios.put(`${baseURL}/${fornecedorEditando.fornecedor_id}`, dados);
+        alert("Fornecedor atualizado com sucesso!");
+        setFornecedorEditando(null); // Sai do modo de edição
+      } else {
+        // Lógica para CADASTRO (POST)
+        await axios.post(baseURL, dados);
+        alert("Fornecedor adicionado com sucesso!");
+      }
+
+      // Limpa os campos e atualiza a lista
+      setRazaoSocial("");
+      setCnpj("");
+      setEndereco("");
+      setContato("");
+      fetchFornecedores();
     } catch (err) {
-      console.error("Erro ao adicionar fornecedor:", err);
-      alert("Falha ao adicionar fornecedor.");
+      console.error("Erro ao processar fornecedor:", err);
+      alert("Falha ao processar fornecedor.");
+    }
+  };
+
+  const handleEdit = (fornecedor) => {
+    // Preenche o formulário com os dados do fornecedor para edição
+    setRazaoSocial(fornecedor.razao_social);
+    setCnpj(fornecedor.cnpj);
+    setEndereco(fornecedor.endereco);
+    setContato(fornecedor.contato);
+    setFornecedorEditando(fornecedor); // Entra no modo de edição
+  };
+
+  const handleRemove = (fornecedorId) => {
+    if (window.confirm("Tem certeza que deseja remover este fornecedor?")) {
+      axios.delete(`${baseURL}/${fornecedorId}`)
+        .then(() => {
+          setFornecedores(fornecedores.filter(f => f.fornecedor_id !== fornecedorId));
+          alert("Fornecedor removido com sucesso!");
+        })
+        .catch(err => {
+          console.error("Erro ao remover fornecedor:", err);
+          alert("Falha ao remover fornecedor.");
+        });
     }
   };
 
   return (
     <div>
       <h2>📌 Fornecedores</h2>
+      
+      {/* Formulário de Cadastro/Edição */}
+      <h3>{fornecedorEditando ? "✏️ Editar Fornecedor" : "➕ Adicionar Novo Fornecedor"}</h3>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Razão Social:</label>
@@ -58,28 +107,48 @@ export default function Fornecedores() {
           <label>Contato:</label>
           <input type="text" value={contato} onChange={(e) => setContato(e.target.value)} maxLength={50} />
         </div>
-        <button type="submit">Adicionar Fornecedor</button>
+        <button type="submit">{fornecedorEditando ? "Atualizar Fornecedor" : "Adicionar Fornecedor"}</button>
       </form>
 
+      <hr style={{ margin: "20px 0" }} />
+
+      {/* Tabela de Consulta */}
+      <h3>🔍 Fornecedores Cadastrados</h3>
       <table border="1" cellPadding="5" cellSpacing="0">
         <thead>
           <tr>
+            <th>ID</th>
             <th>Razão Social</th>
             <th>CNPJ</th>
             <th>Endereço</th>
             <th>Contato</th>
+            <th>Editar</th>
+            <th>Remover</th>
           </tr>
         </thead>
         <tbody>
           {fornecedores.length === 0 ? (
-            <tr><td colSpan="4" style={{ textAlign: "center" }}>Nenhum fornecedor cadastrado.</td></tr>
+            <tr>
+              <td colSpan="7" style={{ textAlign: "center" }}>Nenhum fornecedor cadastrado.</td>
+            </tr>
           ) : (
-            fornecedores.map((f, index) => (
-              <tr key={index}>
+            fornecedores.map((f) => (
+              <tr key={f.fornecedor_id}>
+                <td>{f.fornecedor_id}</td>
                 <td>{f.razao_social}</td>
                 <td>{f.cnpj}</td>
                 <td>{f.endereco}</td>
                 <td>{f.contato}</td>
+                <td>
+                  <button onClick={() => handleEdit(f)}>
+                    ✏️
+                  </button>
+                </td>
+                <td>
+                  <button onClick={() => handleRemove(f.fornecedor_id)}>
+                    🗑️
+                  </button>
+                </td>
               </tr>
             ))
           )}
