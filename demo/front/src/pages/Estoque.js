@@ -1,21 +1,32 @@
-import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { useState } from "react";
+import Inventario from "./Estoque.filhos/Inventario";
+import EntradaSaida from "./Estoque.filhos/EntradaSaida";
+import Fornecedores from "./Estoque.filhos/Fornecedores";
 
 function Estoque() {
+  const [tela, setTela] = useState(null); // null = mostra menu
+
   return (
     <div>
-      <h1>Estoque e Logística</h1>
-      <nav className="sub-menu">
-        <Link to="inventario">Controle de Inventário</Link>
-        <Link to="produtos">Entrada e saída de Produtos</Link>
-        <Link to="fornecedores">Controle de Fornecedores</Link>
-      </nav>
+      <h1>Estoque</h1>
 
-      <Routes>
-        <Route path="inventario" element={<p>📌 Tela de Inventário</p>} />
-        <Route path="produtos" element={<p>📌 Tela de Entrada e Saída</p>} />
-        <Route path="fornecedores" element={<p>📌 Tela de Fornecedores</p>} />
-      </Routes>
+      {tela === null && (
+        <nav className="sub-menu">
+          <button onClick={() => setTela("inventario")}>Controle de inventário</button>
+          <button onClick={() => setTela("entradaSaida")}>Entrada e saída de produtos</button>
+          <button onClick={() => setTela("fornecedores")}>Controle de fornecedores</button>
+        </nav>
+      )}
+
+      {tela !== null && (
+        <div>
+          <button onClick={() => setTela(null)}>⬅ Voltar</button>
+
+          {tela === "inventario" && <Inventario />}
+          {tela === "entradaSaida" && <EntradaSaida />}
+          {tela === "fornecedores" && <Fornecedores />}
+        </div>
+      )}
     </div>
   );
 }
