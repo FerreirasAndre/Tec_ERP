@@ -6,8 +6,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class OrdemProducao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,38 +26,5 @@ public OrdemProducao(long idOrdem, LocalDate dataInicio, LocalDate dataFim, int 
 	this.dataFim = dataFim;
 	this.quantidadeProduzir = quantidadeProduzir;
 	
-}
-
-public long getIdOrdem() {
-	return idOrdem;
-}
-
-public void setidOrdem(long idOrdem) {
-	this.idOrdem = idOrdem;
-}
-
-
-public LocalDate getDataInicio() {
-	return dataInicio;
-}
-
-public void setDataInicio(LocalDate dataInicio) {
-	this.dataInicio = dataInicio;
-}
-
-public LocalDate getDataFim() {
-	return dataFim;
-}
-
-public void setDataFim(LocalDate dataFim) {
-	this.dataFim = dataFim;
-}
-
-public int getQuantidadeProduzir() {
-	return quantidadeProduzir;
-}
-
-public void setQuantidadeProduzir(int quantidadeProduzir) {
-	this.quantidadeProduzir = quantidadeProduzir;
-}
+	}
 }

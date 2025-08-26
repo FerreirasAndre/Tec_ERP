@@ -4,8 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Produto {
 
 	@Id
@@ -29,62 +33,6 @@ public class Produto {
         this.categoria = categoria;
         this.precoVenda = precoVenda;
         this.custo = custo;
-        this.quantidadeEstoque = quantidadeEstoque;
-    }
-
-    public long getIdProduto() {
-        return idProduto;
-    }
-
-    public void setIdProduto(long idProduto) {
-        this.idProduto = idProduto;
-    }
-
-    public String getCodigoProduto() {
-        return codigoProduto;
-    }
-
-    public void setCodigoProduto(String codigoProduto) {
-        this.codigoProduto = codigoProduto;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public double getPrecoVenda() {
-        return precoVenda;
-    }
-
-    public void setPrecoVenda(double precoVenda) {
-        this.precoVenda = precoVenda;
-    }
-
-    public double getCusto() {
-        return custo;
-    }
-
-    public void setCusto(double custo) {
-        this.custo = custo;
-    }
-
-    public int getQuantidadeEstoque() {
-        return quantidadeEstoque;
-    }
-
-    public void setQuantidadeEstoque(int quantidadeEstoque) {
         this.quantidadeEstoque = quantidadeEstoque;
     }
 }

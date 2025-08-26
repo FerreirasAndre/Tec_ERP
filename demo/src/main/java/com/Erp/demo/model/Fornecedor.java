@@ -4,8 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Fornecedor {
 
 	@Id
@@ -23,46 +27,6 @@ public class Fornecedor {
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;
         this.endereco = endereco;
-        this.contato = contato;
-    }
-
-    public long getIdFornecedor() {
-        return idFornecedor;
-    }
-
-    public void setIdFornecedor(long idFornecedor) {
-        this.idFornecedor = idFornecedor;
-    }
-
-    public String getRazaoSocial() {
-        return razaoSocial;
-    }
-
-    public void setRazaoSocial(String razaoSocial) {
-        this.razaoSocial = razaoSocial;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public String getContato() {
-        return contato;
-    }
-
-    public void setContato(String contato) {
         this.contato = contato;
     }
 }

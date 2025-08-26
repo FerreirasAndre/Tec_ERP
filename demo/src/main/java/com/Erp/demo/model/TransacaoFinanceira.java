@@ -5,8 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class TransacaoFinanceira {
 
 	@Id
@@ -26,46 +30,6 @@ public class TransacaoFinanceira {
         this.idConta = idConta;
         this.data = data;
         this.valor = valor;
-        this.formaPagamento = formaPagamento;
-    }
-
-    public long getIdTransacao() {
-        return idTransacao;
-    }
-
-    public void setIdTransacao(long idTransacao) {
-        this.idTransacao = idTransacao;
-    }
-
-    public long getIdConta() {
-        return idConta;
-    }
-
-    public void setIdConta(long idConta) {
-        this.idConta = idConta;
-    }
-
-    public LocalDate getData() {
-        return data;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
-
-    public double getValor() {
-        return valor;
-    }
-
-    public void setValor(double valor) {
-        this.valor = valor;
-    }
-
-    public String getFormaPagamento() {
-        return formaPagamento;
-    }
-
-    public void setFormaPagamento(String formaPagamento) {
         this.formaPagamento = formaPagamento;
     }
 }

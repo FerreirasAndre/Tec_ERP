@@ -8,8 +8,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class LogAuditoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,19 +24,6 @@ public LogAuditoria(long idLog, LocalDate dataHora) {
 	this.idLog = idLog;
 	this.setDataHora(dataHora);
 }
-
-public long getIdLog() {
-	return idLog;
-}
-
-public void setidLog(long idLog) {
-	this.idLog = idLog;
-}
-
-public LocalDate getDataHora() {
-	return dataHora;
-}
-
 public void setDataHora(LocalDate dataHora) {
 	this.dataHora = dataHora;
 }

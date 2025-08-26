@@ -1,9 +1,15 @@
 package com.Erp.demo.model;
 
-import jakarta.persistence.Id;
-
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+@Entity
+@Getter @Setter
+@Table(name = "Cliente")
 public class Cliente {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCliente;
     private String nome;
     private String cpfCnpj;
@@ -11,39 +17,6 @@ public class Cliente {
 
 
 
-    public Integer getIdCliente() {
-        return idCliente;
-    }
 
-    public void setIdCliente(Integer idCliente) {
-        this.idCliente = idCliente;
-    }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCpfCnpj() {
-        return cpfCnpj;
-    }
-
-    public void setCpfCnpj(String cpfCnpj) {
-        this.cpfCnpj = cpfCnpj;
-    }
-
-    /* public String getPedidos (){
-    return;
-    }*/
 }

@@ -4,8 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class PerfilAcesso {
 	@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,29 +23,4 @@ this.idPerfil = idPerfil;
 this.nome = nome;
 this.descricao = descricao;
 }
-
-public long getIdPerfil() {
-    return idPerfil;
-}
-
-public void setIdPerfil(long idPerfil) {
-    this.idPerfil = idPerfil;
-}
-
-public String getNome() {
-    return nome;
-}
-
-public void setNome(String nome) {
-    this.nome = nome;
-}
-
-public String getDescricao() {
-    return descricao;
-}
-
-public void setDescricao(String descricao) {
-    this.descricao = descricao;
-}
-
 }

@@ -6,8 +6,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter @Setter
 public class ContaFinanceira {
 
 	@Id
@@ -29,34 +32,4 @@ public class ContaFinanceira {
     public ContaFinanceira() {
     }
 
-    public long getIdConta() {
-        return idConta;
-    }
-    public void setIdConta(long idConta) {
-        this.idConta = idConta;
-    }
-    public String getDescricao() {
-        return descricao;
-    }
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-    public double getValor() {
-        return valor;
-    }
-    public void setValor(double valor) {
-        this.valor = valor;
-    }
-    public String getTipo() {
-        return tipo;
-    }
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-    public LocalDate getData_vencimento() {
-		return dataVencimento;
-    }
-    public void setData_vencimento(LocalDate data_vencimento) {
-        this.dataVencimento = data_vencimento;
-    }
 }
