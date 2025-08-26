@@ -1,43 +1,49 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function SidebarMenu() {
-  const [isOpen, setIsOpen] = useState(true);
+export default function SidebarMenu() {
+  const [sidebarClosed, setSidebarClosed] = useState(false);
 
   return (
-    <div className={`sidebar ${isOpen ? "open" : "closed"}`}>
-      <button className="toggle-btn" onClick={() => setIsOpen(!isOpen)}>
-        ☰
-      </button>
+    <aside className={`sidebar ${sidebarClosed ? "closed" : ""}`}>
+      <div className="sidebar-header">
+        <span className="logo">Tec ERP</span>
+        <button
+          className="toggle-btn"
+          onClick={() => setSidebarClosed(!sidebarClosed)}
+        >
+          {sidebarClosed ? "➡️" : "⬅️"}
+        </button>
+      </div>
 
       <nav>
-      <Link to="/">
+        <Link to="/">
           <span className="icon">🏠</span>
           <span className="link-text">Home</span>
         </Link>
-        <Link to="/financeiro">
+        <Link to="/Financeiro">
           <span className="icon">💰</span>
           <span className="link-text">Financeiro</span>
         </Link>
-        <Link to="/vendas">
+        <Link to="/Vendas">
           <span className="icon">🛒</span>
           <span className="link-text">Vendas</span>
         </Link>
-        <Link to="/estoque">
+        <Link to="/Estoque">
           <span className="icon">📦</span>
           <span className="link-text">Estoque</span>
         </Link>
-        <Link to="/bi">
+        <Link to="/Bi">
           <span className="icon">📊</span>
           <span className="link-text">BI</span>
         </Link>
-        <Link to="/clientes">
+        <Link to="/Clientes">
           <span className="icon">👥</span>
           <span className="link-text">Clientes</span>
         </Link>
       </nav>
-    </div>
+
+      <div className="sidebar-footer">© 2025 Tec ERP</div>
+    </aside>
   );
 }
-
-export default SidebarMenu;
